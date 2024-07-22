@@ -1,5 +1,5 @@
 "use client";
-import { useSession } from "@/app/hooks/use-session";
+import { useSession } from "@/hooks/use-session";
 import React from "react";
 import {
   DropdownMenu,
