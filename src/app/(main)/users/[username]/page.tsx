@@ -1,0 +1,54 @@
+import { validateReqeust } from "@/auth";
+import TrendsSidebar from "@/components/trends-sidebar";
+import prisma from "@/lib/prisma";
+import { getUserDataSelect } from "@/lib/types";
+import { Metadata } from "next";
+import { notFound } from "next/navigation";
+import React, { cache } from "react";
+import UserProfile from "./components/user-profile";
+interface PageProps {
+  params: { username: string };
+}
+const getUser = cache(async (username: string, loggedInUserId: string) => {
+  const user = await prisma.user.findFirst({
+    where: {
+      username: {
+        equals: username,
+        mode: "insensitive",
+      },
+    },
+    select: getUserDataSelect(loggedInUserId),
+  });
+
+  if (!user) notFound();
+  return user;
+});
+
+export const generateMetadata = async ({
+  params: { username },
+}: PageProps): Promise<Metadata> => {
+  const { user: loggedInUserId } = await validateReqeust();
+  if (!loggedInUserId) return {};
+
+  const user = await getUser(username, loggedInUserId.id);
+  return {
+    title: `${user.displayName} (@${user.username})`,
+  };
+};
+const Page = async ({ params: { username } }: PageProps) => {
+  const { user: loggedInUser } = await validateReqeust();
+  if (!loggedInUser) {
+    return <p>You&apos;re not authrized to see this page</p>;
+  }
+  const user = await getUser(username, loggedInUser.id);
+  return (
+    <main className="flex w-full min-w-0 gap-5">
+      <div className="w-full min-w-0 space-y-5">
+        <UserProfile user={user} loggedInUserId={loggedInUser.id} />
+      </div>
+      <TrendsSidebar />
+    </main>
+  );
+};
+
+export default Page;

@@ -1,8 +1,8 @@
-import ForYouFeed from "@/components/posts/for-you-feed";
+import ForYouFeed from "./components/for-you-feed";
 import PostEditor from "@/components/posts/editor/post-editor";
 import TrendsSidebar from "@/components/trends-sidebar";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
-import FollowingFeed from "@/components/posts/following-feed";
+import FollowingFeed from "./components/following-feed";
 
 export default async function Home() {
   return (

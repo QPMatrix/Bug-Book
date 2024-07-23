@@ -6,10 +6,8 @@ import { Loader2 } from "lucide-react";
 import React from "react";
 import Post from "@/components/posts/post";
 import KyInstance from "@/lib/ky";
-import { Button } from "../ui/button";
-import InfiniteScrollContainer from "../infinite-scroll-container";
-import PostsSkeleton from "./posts-skeleton";
-import DeletePostDialog from "./delete-dialog";
+import InfiniteScrollContainer from "@/components/infinite-scroll-container";
+import PostsSkeleton from "@/components/posts/posts-skeleton";
 
 const FollowingFeed = () => {
   const {

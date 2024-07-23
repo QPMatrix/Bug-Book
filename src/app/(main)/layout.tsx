@@ -2,8 +2,8 @@ import React from "react";
 import { validateReqeust } from "@/auth";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "@/provider/session-provider";
-import Navbar from "@/components/navbar";
-import Menubar from "@/components/menu-bar";
+import Navbar from "./components/navbar";
+import Menubar from "./components/menu-bar";
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
   const session = await validateReqeust();
