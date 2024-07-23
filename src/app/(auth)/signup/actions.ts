@@ -25,6 +25,7 @@ export const signUp = async (
       where: {
         username: {
           equals: username,
+          mode: "insensitive",
         },
       },
     });
