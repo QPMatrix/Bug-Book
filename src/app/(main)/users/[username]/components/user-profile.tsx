@@ -7,6 +7,7 @@ import { FollowerInfo, UserData } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 import { formatDate } from "date-fns";
 import React from "react";
+import EditPorfileButton from "./edit-profile-button";
 interface UserProfileProps {
   user: UserData;
   loggedInUserId: string;
@@ -43,7 +44,7 @@ const UserProfile = ({ user, loggedInUserId }: UserProfileProps) => {
           </div>
         </div>
         {user.id === loggedInUserId ? (
-          <Button>Editor</Button>
+          <EditPorfileButton user={user} />
         ) : (
           <FollowButton userId={user.id} initailState={followerInfo} />
         )}
