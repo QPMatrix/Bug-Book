@@ -35,9 +35,14 @@ export const useSumbitPostMutation = () => {
           }
         },
       );
+      queryClient.invalidateQueries({
+        queryKey: queryFilter.queryKey,
+        predicate(query) {
+          return !query.state.data;
+        },
+      });
       toast({
-        variant: "default",
-        description: "Post created",
+        content: "Post created",
       });
     },
     onError: (error) => {

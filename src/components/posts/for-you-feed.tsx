@@ -9,6 +9,7 @@ import KyInstance from "@/lib/ky";
 import { Button } from "../ui/button";
 import InfiniteScrollContainer from "../infinite-scroll-container";
 import PostsSkeleton from "./posts-skeleton";
+import DeletePostDialog from "./delete-dialog";
 
 const ForYouFeed = () => {
   const {
