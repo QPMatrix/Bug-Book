@@ -1,12 +1,12 @@
 "use server";
 
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude } from "@/lib/types";
 import { createPostSchema } from "@/lib/validation";
 
 export const submitPost = async (input: string) => {
-  const { user } = await validateReqeust();
+  const { user } = await validateRequest();
   if (!user) throw new Error("Unauthrozied");
   const { content } = createPostSchema.parse({ content: input });
 

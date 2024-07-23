@@ -1,4 +1,4 @@
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { FollowerInfo } from "@/lib/types";
 export const GET = async (
@@ -6,7 +6,7 @@ export const GET = async (
   { params: { userId } }: { params: { userId: string } },
 ) => {
   try {
-    const { user: loggedInUser } = await validateReqeust();
+    const { user: loggedInUser } = await validateRequest();
     if (!loggedInUser) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -47,7 +47,7 @@ export const POST = async (
   { params: { userId } }: { params: { userId: string } },
 ) => {
   try {
-    const { user: loggedInUser } = await validateReqeust();
+    const { user: loggedInUser } = await validateRequest();
     if (!loggedInUser) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }
@@ -76,7 +76,7 @@ export const DELETE = async (
   { params: { userId } }: { params: { userId: string } },
 ) => {
   try {
-    const { user: loggedInUser } = await validateReqeust();
+    const { user: loggedInUser } = await validateRequest();
     if (!loggedInUser) {
       return Response.json({ error: "Unauthorized" }, { status: 401 });
     }

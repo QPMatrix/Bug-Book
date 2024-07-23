@@ -39,7 +39,7 @@ interface DatabaseUserAttributes {
   githubId: string | null;
 }
 
-export const validateReqeust = cache(
+export const validateRequest = cache(
   async (): Promise<
     { user: User; session: Session } | { user: null; session: null }
   > => {

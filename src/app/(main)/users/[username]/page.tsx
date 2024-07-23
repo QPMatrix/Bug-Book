@@ -1,4 +1,4 @@
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import TrendsSidebar from "@/components/trends-sidebar";
 import prisma from "@/lib/prisma";
 import { getUserDataSelect } from "@/lib/types";
@@ -27,7 +27,7 @@ const getUser = cache(async (username: string, loggedInUserId: string) => {
 export const generateMetadata = async ({
   params: { username },
 }: PageProps): Promise<Metadata> => {
-  const { user: loggedInUserId } = await validateReqeust();
+  const { user: loggedInUserId } = await validateRequest();
   if (!loggedInUserId) return {};
 
   const user = await getUser(username, loggedInUserId.id);
@@ -36,7 +36,7 @@ export const generateMetadata = async ({
   };
 };
 const Page = async ({ params: { username } }: PageProps) => {
-  const { user: loggedInUser } = await validateReqeust();
+  const { user: loggedInUser } = await validateRequest();
   if (!loggedInUser) {
     return <p>You&apos;re not authrized to see this page</p>;
   }

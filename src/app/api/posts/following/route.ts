@@ -1,4 +1,4 @@
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude, PostsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
@@ -7,7 +7,7 @@ export const GET = async (req: NextRequest) => {
   try {
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
     const pageSize = 10;
-    const { user } = await validateReqeust();
+    const { user } = await validateRequest();
     if (!user) return Response.json({ error: "Unauthorized" }, { status: 401 });
 
     const posts = await prisma.post.findMany({

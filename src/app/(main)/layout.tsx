@@ -1,12 +1,12 @@
 import React from "react";
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "@/provider/session-provider";
 import Navbar from "./components/navbar";
 import Menubar from "./components/menu-bar";
 
 const MainLayout = async ({ children }: { children: React.ReactNode }) => {
-  const session = await validateReqeust();
+  const session = await validateRequest();
   if (!session.user) redirect("/login");
   return (
     <SessionProvider value={session}>

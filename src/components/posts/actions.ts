@@ -1,11 +1,11 @@
 "use server";
 
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude } from "@/lib/types";
 
 export const deletePost = async (id: string) => {
-  const { user } = await validateReqeust();
+  const { user } = await validateRequest();
   if (!user) throw new Error("Unauthrozied");
 
   const post = await prisma.post.findUnique({

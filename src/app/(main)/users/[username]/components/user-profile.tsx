@@ -1,3 +1,6 @@
+import FollowButton from "@/components/follow-button";
+import FollowerCount from "@/components/follower-counter";
+import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/user-avatar";
 import { FollowerInfo, UserData } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
@@ -35,9 +38,23 @@ const UserProfile = ({ user, loggedInUserId }: UserProfileProps) => {
                 {formatNumber(user._count.posts)}
               </span>
             </span>
+            <FollowerCount userId={user.id} initialState={followerInfo} />
           </div>
         </div>
+        {user.id === loggedInUserId ? (
+          <Button>Editor</Button>
+        ) : (
+          <FollowButton userId={user.id} initailState={followerInfo} />
+        )}
       </div>
+      {user.bio && (
+        <>
+          <hr />
+          <div className="overflow-hidden whitespace-pre-line break-words">
+            {user.bio}
+          </div>
+        </>
+      )}
     </div>
   );
 };

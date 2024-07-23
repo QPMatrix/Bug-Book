@@ -1,4 +1,4 @@
-import { validateReqeust } from "@/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";
@@ -8,7 +8,7 @@ import FollowButton from "../follow-button";
 import { getUserDataSelect } from "@/lib/types";
 
 const WhoToFollow = async () => {
-  const { user } = await validateReqeust();
+  const { user } = await validateRequest();
   if (!user) return null;
 
   const usersToFollow = await prisma.user.findMany({
