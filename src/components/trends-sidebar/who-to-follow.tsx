@@ -6,6 +6,7 @@ import UserAvatar from "../user-avatar";
 import { Button } from "../ui/button";
 import FollowButton from "../follow-button";
 import { getUserDataSelect } from "@/lib/types";
+import UserToolTip from "../user-tooltip";
 
 const WhoToFollow = async () => {
   const { user } = await validateRequest();
@@ -30,20 +31,22 @@ const WhoToFollow = async () => {
       <div className="text-xl font-bold">Who to follow</div>
       {usersToFollow.map((user) => (
         <div key={user.id} className="flex items-center justify-between gap-3">
-          <Link
-            href={`/users/${user.username}`}
-            className="flex items-center gap-3"
-          >
-            <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
-            <div>
-              <p className="line-clamp-1 break-all font-semibold hover:underline">
-                {user.displayName}
-              </p>
-              <p className="line-clamp-1 break-all text-muted-foreground">
-                @{user.username}
-              </p>
-            </div>
-          </Link>
+          <UserToolTip user={user}>
+            <Link
+              href={`/users/${user.username}`}
+              className="flex items-center gap-3"
+            >
+              <UserAvatar avatarUrl={user.avatarUrl} className="flex-none" />
+              <div>
+                <p className="line-clamp-1 break-all font-semibold hover:underline">
+                  {user.displayName}
+                </p>
+                <p className="line-clamp-1 break-all text-muted-foreground">
+                  @{user.username}
+                </p>
+              </div>
+            </Link>
+          </UserToolTip>
           <FollowButton
             userId={user.id}
             initailState={{

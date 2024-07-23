@@ -6,6 +6,8 @@ import UserAvatar from "../user-avatar";
 import { formatRelativeDate } from "@/lib/utils";
 import { useSession } from "@/hooks/use-session";
 import PostMoreButton from "./post-more-button";
+import Linkify from "../linkfy";
+import UserToolTip from "../user-tooltip";
 interface PostsPros {
   post: PostData;
 }
@@ -16,16 +18,21 @@ const Post = ({ post }: PostsPros) => {
     <article className="group/post space-y-3 rounded-2xl bg-card p-5 shadow-sm">
       <div className="flex justify-between gap-3">
         <div className="flex flex-wrap gap-3">
-          <Link href={`/users/${post.user.username}`}>
-            <UserAvatar avatarUrl={post.user.avatarUrl} />
-          </Link>
-          <div>
-            <Link
-              href={`/users/${post.user.username}`}
-              className="block font-medium hover:underline"
-            >
-              {post.user.displayName}
+          <UserToolTip user={post.user}>
+            <Link href={`/users/${post.user.username}`}>
+              <UserAvatar avatarUrl={post.user.avatarUrl} />
             </Link>
+          </UserToolTip>
+
+          <div>
+            <UserToolTip user={post.user}>
+              <Link
+                href={`/users/${post.user.username}`}
+                className="block font-medium hover:underline"
+              >
+                {post.user.displayName}
+              </Link>
+            </UserToolTip>
             <Link
               href={`/posts/${post.id}`}
               className="bloc text-sm text-muted-foreground hover:underline"
@@ -41,7 +48,9 @@ const Post = ({ post }: PostsPros) => {
           />
         )}
       </div>
-      <div className="whitespace-pre-line break-words">{post.content}</div>
+      <Linkify>
+        <div className="whitespace-pre-line break-words">{post.content}</div>
+      </Linkify>
     </article>
   );
 };
