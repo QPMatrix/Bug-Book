@@ -19,12 +19,14 @@ import { Check, LogOutIcon, Monitor, Moon, Sun, UserIcon } from "lucide-react";
 import { logout } from "@/app/(auth)/actions";
 import { cn } from "@/lib/utils";
 import { useTheme } from "next-themes";
+import { useQueryClient } from "@tanstack/react-query";
 interface UserBtnProps {
   className?: string;
 }
 const UserBtn = ({ className }: UserBtnProps) => {
   const { user } = useSession();
   const { theme, setTheme } = useTheme();
+  const queryClient = useQueryClient();
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -69,6 +71,7 @@ const UserBtn = ({ className }: UserBtnProps) => {
         <DropdownMenuSeparator />
         <DropdownMenuItem
           onClick={() => {
+            queryClient.clear();
             logout();
           }}
         >
