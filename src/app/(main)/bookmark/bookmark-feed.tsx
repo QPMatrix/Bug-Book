@@ -9,7 +9,7 @@ import KyInstance from "@/lib/ky";
 import InfiniteScrollContainer from "@/components/infinite-scroll-container";
 import PostsSkeleton from "@/components/posts/posts-skeleton";
 
-const FollowingFeed = () => {
+const BookmarkFeed = () => {
   const {
     data,
     fetchNextPage,
@@ -18,10 +18,10 @@ const FollowingFeed = () => {
     isFetchingNextPage,
     status,
   } = useInfiniteQuery({
-    queryKey: ["post-feed", "following"],
+    queryKey: ["post-feed", "bookmarks"],
     queryFn: ({ pageParam }) =>
       KyInstance.get(
-        "/api/posts/following",
+        "/api/posts/bookmarked",
         pageParam ? { searchParams: { cursor: pageParam } } : {},
       ).json<PostsPage>(),
     initialPageParam: null as string | null,
@@ -34,14 +34,14 @@ const FollowingFeed = () => {
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
       <p className="text-center text-muted-foreground">
-        No post found. Start follwing pepole to see their posts
+        You don&apos;t have any bookmarks yet.
       </p>
     );
   }
   if (status === "error") {
     return (
       <p className="text-center text-destructive">
-        An error occured while lodaing posts.
+        An error occured while lodaing bookmarks.
       </p>
     );
   }
@@ -58,4 +58,4 @@ const FollowingFeed = () => {
   );
 };
 
-export default FollowingFeed;
+export default BookmarkFeed;

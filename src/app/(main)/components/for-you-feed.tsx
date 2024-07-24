@@ -33,7 +33,7 @@ const ForYouFeed = () => {
   }
   if (status === "success" && !posts.length && !hasNextPage) {
     return (
-      <p className="text-center text-destructive">
+      <p className="text-center text-muted-foreground">
         No one has posted any thing yet.
       </p>
     );

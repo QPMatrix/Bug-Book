@@ -1,12 +1,13 @@
-import type { Metadata } from "next";
-import localFont from "next/font/local";
-import { ThemeProvider } from "next-themes";
-import "./globals.css";
-import { ToastProvider } from "@/components/ui/toast";
-import ReactQueryProvider from "@/provider/react-query-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { NextSSRPlugin } from "@uploadthing/react/next-ssr-plugin";
+import type { Metadata } from "next";
+import { ThemeProvider } from "next-themes";
+import localFont from "next/font/local";
 import { extractRouterConfig } from "uploadthing/server";
-import { fileRouter } from "@/app/api/uploadthing/core";
+import { fileRouter } from "./api/uploadthing/core";
+import "./globals.css";
+import ReactQueryProvider from "@/provider/react-query-provider";
+
 const geistSans = localFont({
   src: "./fonts/GeistVF.woff",
   variable: "--font-geist-sans",
@@ -18,8 +19,8 @@ const geistMono = localFont({
 
 export const metadata: Metadata = {
   title: {
-    template: "%s | Bugbook",
-    default: "Bugbook",
+    template: "%s | bugbook",
+    default: "bugbook",
   },
   description: "The social media app for powernerds",
 };
@@ -30,7 +31,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" suppressHydrationWarning>
+    <html lang="en">
       <body className={`${geistSans.variable} ${geistMono.variable}`}>
         <NextSSRPlugin routerConfig={extractRouterConfig(fileRouter)} />
         <ReactQueryProvider>
@@ -42,8 +43,8 @@ export default function RootLayout({
           >
             {children}
           </ThemeProvider>
-          <ToastProvider />
         </ReactQueryProvider>
+        <Toaster />
       </body>
     </html>
   );
