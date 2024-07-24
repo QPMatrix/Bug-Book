@@ -37,6 +37,7 @@ const Post = ({ post }: PostsPros) => {
             <Link
               href={`/posts/${post.id}`}
               className="bloc text-sm text-muted-foreground hover:underline"
+              suppressHydrationWarning
             >
               {formatRelativeDate(post.createdAt)}
             </Link>
