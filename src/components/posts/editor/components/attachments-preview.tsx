@@ -34,7 +34,7 @@ const AttachmentPreview = ({
           onClick={onRemoveClick}
           className="absolute right-3 top-3 rounded-full bg-foreground p-1.5 transition-colors hover:bg-foreground/60"
         >
-          <X size={20} />
+          <X size={20} className="text-white dark:text-primary" />
         </button>
       )}
     </div>
