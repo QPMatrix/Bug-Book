@@ -9,6 +9,7 @@ import PostMoreButton from "./post-more-button";
 import Linkify from "../linkfy";
 import UserToolTip from "../user-tooltip";
 import MediaPreviews from "./media-privews";
+import LikeButton from "./like-button";
 interface PostsPros {
   post: PostData;
 }
@@ -56,6 +57,14 @@ const Post = ({ post }: PostsPros) => {
       {!!post.attachments.length && (
         <MediaPreviews attachments={post.attachments} />
       )}
+      <hr className="text-muted-foreground" />
+      <LikeButton
+        postId={post.id}
+        initinalState={{
+          likes: post._count.likes,
+          isLikedByUser: post.likes.some((like) => like.userId === user.id),
+        }}
+      />
     </article>
   );
 };

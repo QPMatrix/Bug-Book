@@ -19,7 +19,7 @@ const FollowButton = ({ userId, initailState }: FollowButtonProps) => {
   const { data } = useFollowerInfo(userId, initailState);
   const { mutate } = useMutation({
     mutationFn: () =>
-      data.isFollwedByUser
+      data.isFollowedByUser
         ? KyInstance.delete(`/api/users/${userId}/followers`)
         : KyInstance.post(`/api/users/${userId}/followers`),
     onMutate: async () => {
@@ -27,8 +27,8 @@ const FollowButton = ({ userId, initailState }: FollowButtonProps) => {
       const prevState = queryClient.getQueryData<FollowerInfo>(queryKey);
       queryClient.setQueryData<FollowerInfo>(queryKey, () => ({
         followers:
-          (prevState?.followers || 0) + (prevState?.isFollwedByUser ? -1 : 1),
-        isFollwedByUser: !prevState?.isFollwedByUser,
+          (prevState?.followers || 0) + (prevState?.isFollowedByUser ? -1 : 1),
+        isFollowedByUser: !prevState?.isFollowedByUser,
       }));
 
       return {
@@ -46,10 +46,10 @@ const FollowButton = ({ userId, initailState }: FollowButtonProps) => {
   });
   return (
     <Button
-      variant={data.isFollwedByUser ? "secondary" : "default"}
+      variant={data.isFollowedByUser ? "secondary" : "default"}
       onClick={() => mutate()}
     >
-      {data.isFollwedByUser ? "Unfollow" : "Follow"}
+      {data.isFollowedByUser ? "Unfollow" : "Follow"}
     </Button>
   );
 };
