@@ -1,8 +1,8 @@
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/auth";
 import FollowButton from "@/components/follow-button";
 import Linkify from "@/components/linkfy";
 import UserAvatar from "@/components/users/user-avatar";
-import UserToolTip from "@/components/user-tooltip";
+import UserTooltip from "@/components/users/user-tooltip";
 import { UserData } from "@/lib/types";
 import Link from "next/link";
 import React from "react";
@@ -15,7 +15,7 @@ const UserInfoSidebar = async ({ user }: UserInfoSidebarProps) => {
   return (
     <div className="space-y-5 rounded-2xl bg-card p-5 shadow-sm">
       <div className="text-xl font-bold">About this user</div>
-      <UserToolTip user={user}>
+      <UserTooltip user={user}>
         <Link
           href={`/users/${user.username}`}
           className="flex items-center gap-3"
@@ -30,7 +30,7 @@ const UserInfoSidebar = async ({ user }: UserInfoSidebarProps) => {
             </p>
           </div>
         </Link>
-      </UserToolTip>
+      </UserTooltip>
       <Linkify>
         <div className="line-clamp-6 whitespace-pre-line break-words text-muted-foreground">
           {user.bio}
@@ -39,9 +39,9 @@ const UserInfoSidebar = async ({ user }: UserInfoSidebarProps) => {
       {user.id !== loggedInUser.id && (
         <FollowButton
           userId={user.id}
-          initailState={{
+          initialState={{
             followers: user._count.followers,
-            isFollwedByUser: user.followers.some(
+            isFollowedByUser: user.followers.some(
               ({ followerId }) => followerId === loggedInUser.id,
             ),
           }}

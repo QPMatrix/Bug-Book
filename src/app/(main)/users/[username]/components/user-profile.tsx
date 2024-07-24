@@ -1,5 +1,5 @@
 import FollowButton from "@/components/follow-button";
-import FollowerCount from "@/lib/follower-counter";
+import FollowerCount from "@/components/follower-counter";
 import Linkify from "@/components/linkfy";
 import { Button } from "@/components/ui/button";
 import UserAvatar from "@/components/users/user-avatar";
@@ -15,7 +15,7 @@ interface UserProfileProps {
 const UserProfile = ({ user, loggedInUserId }: UserProfileProps) => {
   const followerInfo: FollowerInfo = {
     followers: user._count.followers,
-    isFollwedByUser: user.followers.some(
+    isFollowedByUser: user.followers.some(
       ({ followerId }) => followerId === loggedInUserId,
     ),
   };
@@ -46,7 +46,7 @@ const UserProfile = ({ user, loggedInUserId }: UserProfileProps) => {
         {user.id === loggedInUserId ? (
           <EditPorfileButton user={user} />
         ) : (
-          <FollowButton userId={user.id} initailState={followerInfo} />
+          <FollowButton userId={user.id} initialState={followerInfo} />
         )}
       </div>
       {user.bio && (

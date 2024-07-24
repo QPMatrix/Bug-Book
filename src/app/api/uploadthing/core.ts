@@ -1,4 +1,4 @@
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 
 import { createUploadthing, FileRouter } from "uploadthing/next";

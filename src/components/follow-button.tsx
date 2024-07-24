@@ -8,15 +8,15 @@ import KyInstance from "@/lib/ky";
 
 interface FollowButtonProps {
   userId: string;
-  initailState: FollowerInfo;
+  initialState: FollowerInfo;
 }
 
-const FollowButton = ({ userId, initailState }: FollowButtonProps) => {
+const FollowButton = ({ userId, initialState }: FollowButtonProps) => {
   const { toast } = useToast();
   const queryClient = useQueryClient();
   const queryKey: QueryKey = ["follower-info", userId];
 
-  const { data } = useFollowerInfo(userId, initailState);
+  const { data } = useFollowerInfo(userId, initialState);
   const { mutate } = useMutation({
     mutationFn: () =>
       data.isFollowedByUser

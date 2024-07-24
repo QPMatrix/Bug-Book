@@ -1,5 +1,5 @@
 import React from "react";
-import { validateRequest } from "@/lib/auth";
+import { validateRequest } from "@/auth";
 import { redirect } from "next/navigation";
 import { SessionProvider } from "@/provider/session-provider";
 import Navbar from "./components/navbar";

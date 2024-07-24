@@ -1,4 +1,5 @@
 import { Prisma } from "@prisma/client";
+import prisma from "@/lib/prisma";
 
 export function getUserDataSelect(loggedInUserId: string) {
   return {
@@ -43,7 +44,7 @@ export function getPostDataInclude(loggedInUserId: string) {
         userId: true,
       },
     },
-    bookmark: {
+    bookmarks: {
       where: {
         userId: loggedInUserId,
       },
@@ -80,6 +81,27 @@ export interface CommentsPage {
   comments: CommentData[];
   prevCursor: string | null;
 }
+export const notificationsInclude = {
+  issuer: {
+    select: {
+      username: true,
+      displayName: true,
+      avatarUrl: true,
+    },
+  },
+  post: {
+    select: {
+      content: true,
+    },
+  },
+} satisfies Prisma.NotificationInclude;
+export type NotificationsData = Prisma.NotificationGetPayload<{
+  include: typeof notificationsInclude;
+}>;
+export interface NotificationsPage {
+  notifications: NotificationsData[];
+  nextCursor: string | null;
+}
 export interface FollowerInfo {
   followers: number;
   isFollowedByUser: boolean;
@@ -92,4 +114,7 @@ export interface LikeInfo {
 
 export interface BookmarkInfo {
   isBookedmarkByUser: boolean;
+}
+export interface NotificationsCountInfo {
+  unreadCount: number;
 }

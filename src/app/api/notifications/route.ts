@@ -1,24 +1,26 @@
 import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
-import { getPostDataInclude, PostsPage } from "@/lib/types";
+import { notificationsInclude, NotificationsPage } from "@/lib/types";
 import { NextRequest } from "next/server";
-
 export const GET = async (req: NextRequest) => {
   try {
     const cursor = req.nextUrl.searchParams.get("cursor") || undefined;
     const pageSize = 10;
     const { user } = await validateRequest();
     if (!user) return Response.json({ error: "Unauthorized" }, { status: 401 });
-
-    const posts = await prisma.post.findMany({
-      include: getPostDataInclude(user.id),
+    const notifications = await prisma.notification.findMany({
+      where: {
+        recipientId: user.id,
+      },
+      include: notificationsInclude,
       orderBy: { createdAt: "desc" },
       take: pageSize + 1,
       cursor: cursor ? { id: cursor } : undefined,
     });
-    const nextCursor = posts.length > pageSize ? posts[pageSize].id : null;
-    const data: PostsPage = {
-      posts: posts.slice(0, pageSize),
+    const nextCursor =
+      notifications.length > pageSize ? notifications[pageSize].id : null;
+    const data: NotificationsPage = {
+      notifications: notifications.slice(0, pageSize).slice(0, pageSize),
       nextCursor,
     };
     return Response.json(data);

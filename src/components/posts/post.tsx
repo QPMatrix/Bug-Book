@@ -79,7 +79,7 @@ const Post = ({ post }: PostsPros) => {
         <BookmarkButton
           postId={post.id}
           initinalState={{
-            isBookedmarkByUser: post.bookmark.some(
+            isBookedmarkByUser: post.bookmarks.some(
               (bookmark) => bookmark.userId === user.id,
             ),
           }}

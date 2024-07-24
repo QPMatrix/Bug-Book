@@ -30,6 +30,7 @@ const PostEditor = () => {
   });
   const { onClick, ...rootProps } = getRootProps();
   const editor = useEditor({
+    immediatelyRender: false,
     extensions: [
       StarterKit.configure({
         bold: false,
