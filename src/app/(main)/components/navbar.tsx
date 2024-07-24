@@ -1,6 +1,6 @@
 import Link from "next/link";
 import React from "react";
-import UserBtn from "@/components/user-btn";
+import UserBtn from "@/components/users/user-btn";
 import SearchField from "@/components/serach-field";
 
 const Navbar = () => {

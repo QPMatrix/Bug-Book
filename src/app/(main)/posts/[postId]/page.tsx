@@ -1,4 +1,4 @@
-import { validateRequest } from "@/auth";
+import { validateRequest } from "@/lib/auth";
 import Post from "@/components/posts/post";
 import prisma from "@/lib/prisma";
 import { getPostDataInclude } from "@/lib/types";

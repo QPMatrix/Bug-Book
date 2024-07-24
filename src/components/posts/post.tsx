@@ -2,12 +2,12 @@
 import { PostData } from "@/lib/types";
 import Link from "next/link";
 import React, { useState } from "react";
-import UserAvatar from "../user-avatar";
+import UserAvatar from "../users/user-avatar";
 import { formatRelativeDate } from "@/lib/utils";
 import { useSession } from "@/hooks/use-session";
 import PostMoreButton from "./post-more-button";
 import Linkify from "../linkfy";
-import UserToolTip from "../user-tooltip";
+import UserToolTip from "../users/user-tooltip";
 import MediaPreviews from "./media-privews";
 import LikeButton from "./like-button";
 import BookmarkButton from "./bookmark-button";

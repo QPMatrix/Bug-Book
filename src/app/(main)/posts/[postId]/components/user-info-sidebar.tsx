@@ -1,7 +1,7 @@
-import { validateRequest } from "@/auth";
+import { validateRequest } from "@/lib/auth";
 import FollowButton from "@/components/follow-button";
 import Linkify from "@/components/linkfy";
-import UserAvatar from "@/components/user-avatar";
+import UserAvatar from "@/components/users/user-avatar";
 import UserToolTip from "@/components/user-tooltip";
 import { UserData } from "@/lib/types";
 import Link from "next/link";

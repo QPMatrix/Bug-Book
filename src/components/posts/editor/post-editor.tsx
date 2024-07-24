@@ -2,7 +2,7 @@
 import { EditorContent, useEditor } from "@tiptap/react";
 import StarterKit from "@tiptap/starter-kit";
 import Placeholder from "@tiptap/extension-placeholder";
-import UserAvatar from "@/components/user-avatar";
+import UserAvatar from "@/components/users/user-avatar";
 import { useSession } from "@/hooks/use-session";
 import "./styles.css";
 import LoadingButton from "@/components/loading-btn";

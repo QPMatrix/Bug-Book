@@ -1,8 +1,8 @@
 import { CommentData } from "@/lib/types";
 import React from "react";
-import UserToolTip from "../user-tooltip";
+import UserToolTip from "../users/user-tooltip";
 import Link from "next/link";
-import UserAvatar from "../user-avatar";
+import UserAvatar from "../users/user-avatar";
 import { formatRelativeDate } from "../../lib/utils";
 import { useSession } from "@/hooks/use-session";
 import CommentMoreButton from "./commnet-more-button";

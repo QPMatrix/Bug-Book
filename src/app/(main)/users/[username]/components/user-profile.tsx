@@ -1,8 +1,8 @@
 import FollowButton from "@/components/follow-button";
-import FollowerCount from "@/components/follower-counter";
+import FollowerCount from "@/lib/follower-counter";
 import Linkify from "@/components/linkfy";
 import { Button } from "@/components/ui/button";
-import UserAvatar from "@/components/user-avatar";
+import UserAvatar from "@/components/users/user-avatar";
 import { FollowerInfo, UserData } from "@/lib/types";
 import { formatNumber } from "@/lib/utils";
 import { formatDate } from "date-fns";

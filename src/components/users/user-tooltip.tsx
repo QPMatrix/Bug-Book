@@ -7,12 +7,12 @@ import {
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from "./ui/tooltip";
+} from "../ui/tooltip";
 import Link from "next/link";
 import UserAvatar from "./user-avatar";
-import FollowButton from "./follow-button";
-import Linkify from "./linkfy";
-import FollowerCount from "./follower-counter";
+import FollowButton from "../follow-button";
+import Linkify from "../linkfy";
+import FollowerCount from "../follower-counter";
 interface UserToolTipsProps extends PropsWithChildren {
   user: UserData;
 }
@@ -20,7 +20,7 @@ const UserToolTip = ({ user, children }: UserToolTipsProps) => {
   const { user: loggedInUser } = useSession();
   const followerState: FollowerInfo = {
     followers: user._count.followers,
-    isFollwedByUser: !!user.followers.some(
+    isFollowedByUser: !!user.followers.some(
       ({ followerId }) => followerId === loggedInUser.id,
     ),
   };

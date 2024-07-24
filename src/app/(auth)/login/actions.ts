@@ -4,7 +4,7 @@ import prisma from "@/lib/prisma";
 import { loginSchema, LoginValues } from "@/lib/validation";
 import { isRedirectError } from "next/dist/client/components/redirect";
 import { verify } from "@node-rs/argon2";
-import { lucia } from "@/auth";
+import { lucia } from "@/lib/auth";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
 export const login = async (

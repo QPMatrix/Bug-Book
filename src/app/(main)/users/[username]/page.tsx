@@ -1,4 +1,4 @@
-import { validateRequest } from "@/auth";
+import { validateRequest } from "@/lib/auth";
 import TrendsSidebar from "@/components/trends-sidebar";
 import prisma from "@/lib/prisma";
 import { getUserDataSelect } from "@/lib/types";

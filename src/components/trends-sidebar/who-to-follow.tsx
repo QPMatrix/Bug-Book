@@ -1,12 +1,12 @@
-import { validateRequest } from "@/auth";
 import prisma from "@/lib/prisma";
 import Link from "next/link";
 import React from "react";
-import UserAvatar from "../user-avatar";
+import UserAvatar from "../users/user-avatar";
 import { Button } from "../ui/button";
 import FollowButton from "../follow-button";
 import { getUserDataSelect } from "@/lib/types";
-import UserToolTip from "../user-tooltip";
+import UserToolTip from "../users/user-tooltip";
+import { validateRequest } from "@/lib/auth";
 
 const WhoToFollow = async () => {
   const { user } = await validateRequest();
@@ -51,7 +51,7 @@ const WhoToFollow = async () => {
             userId={user.id}
             initailState={{
               followers: user._count.followers,
-              isFollwedByUser: user.followers.some(
+              isFollowedByUser: user.followers.some(
                 ({ followerId }) => followerId === user.id,
               ),
             }}

@@ -1,6 +1,6 @@
 "use client";
 
-import InfiniteScrollContainer from "@/components/infinite-scroll-container";
+import InfiniteScrollContainer from "@/lib/infinite-scroll-container";
 import Post from "@/components/posts/post";
 import PostsSkeleton from "@/components/posts/posts-skeleton";
 import kyInstance from "@/lib/ky";

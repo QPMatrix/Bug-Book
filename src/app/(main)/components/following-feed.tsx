@@ -6,7 +6,7 @@ import { Loader2 } from "lucide-react";
 import React from "react";
 import Post from "@/components/posts/post";
 import KyInstance from "@/lib/ky";
-import InfiniteScrollContainer from "@/components/infinite-scroll-container";
+import InfiniteScrollContainer from "@/lib/infinite-scroll-container";
 import PostsSkeleton from "@/components/posts/posts-skeleton";
 
 const FollowingFeed = () => {
