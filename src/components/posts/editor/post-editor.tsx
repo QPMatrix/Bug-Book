@@ -7,9 +7,21 @@ import { useSession } from "@/hooks/use-session";
 import "./styles.css";
 import LoadingButton from "@/components/loading-btn";
 import { useSumbitPostMutation } from "./mutation";
+import { useMediaUpload } from "./useMediaUpload";
+import AddAttachmentButton from "./components/add-attachments-button";
+import AttachmentPreviews from "./components/attachments-previews";
+import { Loader2 } from "lucide-react";
 const PostEditor = () => {
   const { user } = useSession();
   const mutation = useSumbitPostMutation();
+  const {
+    attachments,
+    isUploading,
+    removeAttachment,
+    rest: resetMediaUpload,
+    startUpload,
+    uploadProgress,
+  } = useMediaUpload();
   const editor = useEditor({
     extensions: [
       StarterKit.configure({
@@ -27,11 +39,18 @@ const PostEditor = () => {
     }) || "";
 
   const onSubmit = () => {
-    mutation.mutate(input, {
-      onSuccess: () => {
-        editor?.commands.clearContent();
+    mutation.mutate(
+      {
+        content: input,
+        mediaIds: attachments.map((a) => a.mediaId).filter(Boolean) as string[],
       },
-    });
+      {
+        onSuccess: () => {
+          editor?.commands.clearContent();
+          resetMediaUpload();
+        },
+      },
+    );
   };
   return (
     <div className="flex flex-col gap-5 rounded-2xl bg-card p-5 shadow-sm">
@@ -42,11 +61,27 @@ const PostEditor = () => {
           className="max-h-[20rem] w-full overflow-y-auto rounded-2xl bg-background px-5 py-3"
         />
       </div>
-      <div className="flex justify-end">
+      {!!attachments.length && (
+        <AttachmentPreviews
+          attachments={attachments}
+          removeAttachemnt={removeAttachment}
+        />
+      )}
+      <div className="flex items-center justify-end gap-3">
+        {isUploading && (
+          <>
+            <span className="text-sm">{uploadProgress ?? 0}%</span>
+            <Loader2 className="size-5 animate-spin text-primary" />
+          </>
+        )}
+        <AddAttachmentButton
+          onFilesSelected={startUpload}
+          disbaled={isUploading || attachments.length >= 5}
+        />
         <LoadingButton
           onClick={onSubmit}
           loading={mutation.isPending}
-          disabled={!input.trim()}
+          disabled={!input.trim() || isUploading}
           className="min-w-20"
         >
           Post

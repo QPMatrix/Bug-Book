@@ -8,6 +8,7 @@ import { useSession } from "@/hooks/use-session";
 import PostMoreButton from "./post-more-button";
 import Linkify from "../linkfy";
 import UserToolTip from "../user-tooltip";
+import MediaPreviews from "./media-privews";
 interface PostsPros {
   post: PostData;
 }
@@ -51,6 +52,9 @@ const Post = ({ post }: PostsPros) => {
       <Linkify>
         <div className="whitespace-pre-line break-words">{post.content}</div>
       </Linkify>
+      {!!post.attachments.length && (
+        <MediaPreviews attachments={post.attachments} />
+      )}
     </article>
   );
 };
