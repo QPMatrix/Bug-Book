@@ -4,6 +4,7 @@ import LoginForm from "./login-form";
 import Link from "next/link";
 import loginImage from "@/assets/login-image.jpg";
 import Image from "next/image";
+import OAuthSignInButton from "./oauth-signin-buttons";
 export const metadata: Metadata = {
   title: "Login",
 };
@@ -14,6 +15,12 @@ const Page = () => {
         <div className="w-full space-y-10 overflow-y-auto p-10 md:w-1/2">
           <h1 className="text-center text-3xl font-bold">Login to Bugbook</h1>
           <div className="space-y-5">
+            <OAuthSignInButton />
+            <div className="flex items-center gap-3">
+              <div className="h-px flex-1 bg-muted" />
+              <span>OR</span>
+              <div className="h-px flex-1 bg-muted" />
+            </div>
             <LoginForm />
             <Link href="/signup" className="block text-center hover:underline">
               Don&apos;t have an account? Sign up
