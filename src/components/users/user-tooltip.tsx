@@ -35,7 +35,7 @@ const UserToolTip = ({ user, children }: UserToolTipsProps) => {
                 <UserAvatar size={70} avatarUrl={user.avatarUrl} />
               </Link>
               {loggedInUser.id !== user.id && (
-                <FollowButton userId={user.id} initailState={followerState} />
+                <FollowButton userId={user.id} initialState={followerState} />
               )}
             </div>
             <div>
